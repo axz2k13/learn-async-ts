@@ -17,16 +17,24 @@ function sumRow(arr: number[]): Promise<number> {
     })
 }
 
-let promises: Promise<number>[] = []
-array2D_1.forEach((arr) => {
-    promises.push(sumRow(arr))
-})
 
-const final = Promise.all(promises)
-final.then((vals) => {
-    let sum = 0
-    vals.forEach((val) => {sum += val})
-    console.log(sum)
-}).catch((reason) => {
-    console.log(reason)
-})
+
+async function calculateSum(array2D_1: number[][]): Promise<number> {
+    try {
+        let promises: Promise<number>[] = []
+        array2D_1.forEach((arr) => {
+            promises.push(sumRow(arr))
+        })
+        const final = await Promise.all(promises)
+
+        let sum = 0
+        final.forEach((val) => {sum += val})
+        console.log(sum)
+        return sum
+    } catch {
+        throw 'error'
+    }
+}
+
+calculateSum(array2D_1)
+

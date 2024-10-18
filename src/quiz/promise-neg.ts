@@ -26,7 +26,7 @@ array2D_3.forEach((arr) => {
 })
 
 const neg_row_print = Promise.any(neg_row)
-final.then((vals) => {
+neg_row_print.then((vals) => {
     console.log(vals)
 }).catch((reason) => {
     console.log(reason)
